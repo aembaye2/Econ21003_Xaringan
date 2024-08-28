@@ -1,0 +1,24 @@
+
+# image can be inserted by:
+
+![](path)  but {height, width =?} doesn't work
+
+** Don't forget to put the image extensions .png, .jpg . without those it doesn't work
+
+So the best way so far is to create yaml after --- but before the ## :
+
+background-image: url("imgs/Ch01_figxx.png")
+background-position: 50% 90%
+class: white
+background-size: 75% 75%
+
+background-position: are the x and y axis values; y values are from top to bottom like javascript plane
+
+background-size: 
+In Xaringan presentations, the `background-size` property can be used to control how a background image is displayed. Here are the common options for `background-size`:
+
+1. **cover**: Scales the background image to cover the entire slide, maintaining the aspect ratio. Parts of the image may be cropped to fit.
+2. **contain**: Scales the background image to fit within the slide, maintaining the aspect ratio. The entire image will be visible, but there may be empty space around it.
+3. **auto**: The background image is displayed at its original size.
+4. **percentage values**: You can specify width and height as percentages (e.g., `50% 50%`).
+5. **length values**: You can specify width and height in units like pixels (e.g., `100px 100px`).

@@ -1,0 +1,233 @@
+---
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+    includes:
+      #in_header: ../../../../../_Fns/packages4looks4rmd_beamer.tex
+#title: 'Supply and Demand'
+#author: "Abel Embaye"
+#date: "`r format(Sys.time(), '%B %d, %Y')`"
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r , include=FALSE}
+#knitr::knit_exit()
+library(knitr)
+library(kableExtra)
+library(dplyr)
+library(ggplot2)
+library(cowplot)
+#install.packages("ggpmisc")                         # Install & load ggpmisc package
+library("ggpmisc")
+#install.packages("patchwork")                       # Install & load patchwork
+library("patchwork")
+library(ggpmisc)
+library(gridExtra)
+library(grid)
+library("ggdensity")
+library(ggpubr)
+```
+
+
+```{r , echo=FALSE, message=F, warning=F, fig.width=15}
+# Create the data frame
+p = 1:10
+q = 2 * (1:10)
+draw_and_table <- function(x, y, x_title = "X Axis", y_title = "Y Axis") {
+df <- data.frame(x=q,y=p)
+
+# Create the line plot
+line_plot <- ggplot(df, aes(x = x, y = y)) + 
+  geom_line(size = 1.5) +
+  geom_point(size = 3) +
+  theme(
+    axis.title.x = element_text(size = 20),  # Enlarge x-axis title
+    axis.title.y = element_text(size = 20),  # Enlarge y-axis title
+    axis.text.x = element_text(size = 25),   # Enlarge x-axis labels
+    axis.text.y = element_text(size = 25)    # Enlarge y-axis labels
+  )+
+  labs(x = x_title, y = y_title)  # Set custom axis titles
+
+# Create the summary table
+summary_table <- data.frame(
+  `P` = y,
+ `Qd` = x
+)
+
+# Create the table using ggtexttable with larger text
+table_plot <- ggtexttable(summary_table, rows = NULL, theme = ttheme("mOrange", base_size = 40))
+
+# Arrange the line plot and table side by side
+grid.arrange(line_plot, table_plot, ncol = 2, widths = c(3, 1))
+}
+
+# Call the function with custom x, y values and axis titles
+x_values <- 1:10
+y_values <- 2 * (1:10)
+x_title = "Cups of Mocha per Month"
+y_title = "Price in dollars"
+draw_and_table(x_values, y_values, x_title , y_title  )
+```
+
+---
+
+```{r, echo=F}
+df <- data.frame(P=11:20, Q=1:10)
+#create scatterplot with table
+ggplot(df, aes(x=Q, y=P)) + 
+    geom_point(aes(color=factor(P))) +
+  geom_line()+
+  # Custom y-axis labels
+  theme(
+    axis.title.x = element_text(size = 20),  # Enlarge x-axis title
+    axis.title.y = element_text(size = 20),  # Enlarge y-axis title
+    axis.text.x = element_text(size = 25),   # Enlarge x-axis labels
+    axis.text.y = element_text(size = 25)) +   # Enlarge y-axis labels
+  theme(legend.position = "none") +
+    annotate(geom='table',
+           x=12,
+           y=20,
+           label=list(df))
+```
+
+---
+```{r, echo=F}
+
+# Create the data frame
+df <- data.frame(P = 11:20, Q = 1:10)
+
+# Create the table using gridExtra with larger text
+table <- tableGrob(df, rows = NULL, theme = ttheme_default(base_size = 20))  # Adjust base_size to make the table text bigger
+
+# Create the scatterplot
+p <- ggplot(df, aes(x = Q, y = P)) + 
+  geom_point(aes(color = factor(P))) +
+  geom_line() +
+  xlim(1, 15) +  # Extend the x-axis to create space for the table
+  ylim(10, 25) +  # Extend the y-axis to create space for the table
+  theme(
+    axis.title.x = element_text(size = 20),  # Enlarge x-axis title
+    axis.title.y = element_text(size = 20),  # Enlarge y-axis title
+    axis.text.x = element_text(size = 25),   # Enlarge x-axis labels
+    axis.text.y = element_text(size = 25),   # Enlarge y-axis labels
+    legend.position = "none"  # Remove the legend
+  ) +
+  annotation_custom(grob = table, xmin = 10, xmax = 14, ymin = 10, ymax = 20)  # Adjust positions to place the table
+
+# Print the plot
+print(p)
+```
+---
+> "Teach a parrot the terms 'supply and demand' and you've got an economist."--- Thomas Carlyle
+
+
+##  Lesson Objectives 
+
+In this chapter, you will be able to answer the following:
+
++  What factors affect buyers' demand for goods?
+
++  What factors affect sellers' supply of goods? 
+
++  How do supply and demand determine the price of a good and the quantity sold?  
+
++  How do changes in the factors that affect demand or supply affect the market price and quantity of a good?  
+
++  How do markets allocate resources?
+
+---
+## DEMAND 
+
+
+```{r , echo=FALSE,  fig.width=8.5, fig.height=6, warning=FALSE, message=F}
+# Plot a user-defined function
+myfun <- function(xvar) {
+  xvar
+}
+# This sets the x range from 0 to 20
+ggplot(data.frame(x = c(0, 20)), aes(x = x)) +
+  stat_function(fun = myfun, geom = "line", linewidth = 1.5, linetype = "solid", color = "blue")+
+  labs(x = "Quantity demanded, Q", y = "Price, P") +  # Custom axis titles
+  scale_x_continuous(breaks = seq(0, 20, by = 5), labels = seq(0, 20, by = 5)) +  # Custom x-axis labels
+  scale_y_continuous(breaks = seq(0, 20, by = 5), labels = seq(0, 20, by = 5))+  # Custom y-axis labels
+  theme(
+    axis.title.x = element_text(size = 20),  # Enlarge x-axis title
+    axis.title.y = element_text(size = 20),  # Enlarge y-axis title
+    axis.text.x = element_text(size = 25),   # Enlarge x-axis labels
+    axis.text.y = element_text(size = 25))    # Enlarge y-axis labels
+```
+
+---
+## Demand Schedule and Curve
+```{r warning=FALSE, message=FALSE, echo=F}
+# raw data vertical
+ x = 1:7;
+  y = 2*x
+mydata <- data.frame(x,y)
+# Transpose the data frame and create the table with column lines
+as.data.frame(t(mydata)) %>%
+  kbl(col.names = NULL, format = "html") %>%
+  kable_styling(position = "center", full_width = FALSE) %>%
+  column_spec(1:ncol(mydata), border_right = TRUE)  # Add column lines between cells
+```
+
+
+```{r , echo=FALSE}
+# Plot a user-defined function
+myfun <- function(xvar) {
+  xvar
+}
+# This sets the x range from 0 to 20
+ggplot(data.frame(x = c(0, 20)), aes(x = x)) +
+  stat_function(fun = myfun, geom = "line")
+```
+
+---
+## Demand analysis
+.pull-left[
+
+
+```{r , echo=FALSE,  fig.width=8.5, fig.height=6, warning=FALSE, message=F}
+# Plot a user-defined function
+myfun <- function(xvar) {
+  xvar
+}
+# This sets the x range from 0 to 20
+ggplot(data.frame(x = c(0, 20)), aes(x = x)) +
+  stat_function(fun = myfun, geom = "line", linewidth = 1.5, linetype = "solid", color = "blue")+
+  labs(x = "Quantity demanded, Q", y = "Price, P") +  # Custom axis titles
+  scale_x_continuous(breaks = seq(0, 20, by = 5), labels = seq(0, 20, by = 5)) +  # Custom x-axis labels
+  scale_y_continuous(breaks = seq(0, 20, by = 5), labels = seq(0, 20, by = 5))+  # Custom y-axis labels
+  theme(
+    axis.title.x = element_text(size = 20),  # Enlarge x-axis title
+    axis.title.y = element_text(size = 20),  # Enlarge y-axis title
+    axis.text.x = element_text(size = 25),   # Enlarge x-axis labels
+    axis.text.y = element_text(size = 25))    # Enlarge y-axis labels
+```
+
+
+]
+
+.pull-right[
+```{r warning=FALSE, message=FALSE, echo=F}
+# raw data vertical
+ x = 1:7;
+  y = 2*x
+mydata <- data.frame(x,y)
+as.data.frame(t(mydata)) %>% kable(col.names = NULL) %>% kable_styling()
+```
+
+]
+
+
+
+```{r , echo=FALSE}
+knitr::knit_exit()
+```

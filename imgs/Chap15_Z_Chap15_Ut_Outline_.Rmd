@@ -1,0 +1,505 @@
+--- 
+output:
+  beamer_presentation:
+     includes:
+        in_header: ../../../../../_Fns/packages4looks4rmd_beamer.tex
+title:  "Unemployment and Its Natural Rate"
+author: "Abel Embaye"
+institute: |
+           | UofA
+           |
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+keep_tex: yes
+slide_level: 3
+fontsize: 14pt
+#always_allow_html: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(kableExtra)
+library(knitr)
+options(kableExtra.latex.load_packages = FALSE)
+library(Ryacas)
+library("tidyverse")
+library(formattable)
+library(readxl) #uncomment below when updating
+```
+
+## A quote $\diamond$
+
+![](imgs02//fig1.jpg){height=50%}
+
+\epigraph{``A man willing to work, and unable to find work, is perhaps the saddest sight that fortune's inequality exhibits under the sun."}{--- \textup{Thomas Carlyle}}
+
+## Lesson Objectives
+
+After the lesson, you will be able to answer the following questions:
+
++  How is unemployment measured?
+
++  What is the "natural rate of unemployment"?  
+
++  Why are there always some people unemployed?
+
++  What are the different types of unemployment and their causes
+
+## Labor Force Statistics: Household Survey
+
+  - ***Employed***:
+  
+  - ***Unemployed***: 
+  
+  - ***Not in the labor force***: 
+
+## Labor Force Statistics
+
++ ***Unemployment rate ("u-rate")***: \% of the labor force that is unemployed:
+
+\begin{equation*}
+\tcbhighmath[boxrule=2pt,arc=1pt,colback=blue!10!white,colframe=blue,
+  drop fuzzy shadow=red]{ \begin{matrix}
+ \text{U-rate}
+ \end{matrix}
+ =  100 \times \frac{\text{\# of unemployed}}{\text{Labor force}}}
+\end{equation*}
+
++ ***Labor force participation rate:***  \% of the adult population that is in the labor force
+\begin{equation*}
+\tcbhighmath[boxrule=2pt,arc=1pt,colback=blue!10!white,colframe=blue,
+  drop fuzzy shadow=red]{ \begin{matrix}
+ \text{Labor Force} \\
+  \text{Participation Rate}
+ \end{matrix}
+ =  100 \times \frac{\text{Labor Force}}{\text{Adult Population}}}
+\end{equation*}
+
+## ***ACTIVE LEARNING: Calculate labor force statistics***  
+
+```{r, include=F}
+stat<- c(147.288	, 13.550	, 99.720	); stat
+lf<- stat[1]+stat[2]; lf
+urate<- round((stat[2]/lf)*100,1); urate
+ad.pop<- lf+stat[3]; ad.pop
+p.rate<- round(100*(lf/ad.pop),1); p.rate
+```
+
+Compute the \textbf{labor force}, \textbf{u-rate, adult population}, and \textbf{labor force participation rate} using this data:
+
+![](imgs02//fig2.PNG){height=80%}
+
+\renewcommand{\arraystretch}{1.5}
+```{r , message=FALSE, echo=FALSE, warning=F}
+# dt<- data.frame(a=c("# of employed", "# of employed","# not in the labor froce"),
+#                 b=c(147.288,13.550, 99.720) )
+# kable(dt, col.names=c("Group in the Labor force","in Millions"), align = c("l", "c"))%>% #escape = FALSE
+# row_spec(0:nrow(dt), bold = F, color = "black", background = "#fcf4d9")%>% #background = "#b2ddb2"
+# kable_styling(c( "bordered", latex_options="scale_down", font_size = 10)) %>%
+# column_spec(1, border_left = TRUE) %>%  #border far left
+# column_spec(ncol(dt), border_right = TRUE)%>%  #border far right
+# add_header_above(c("U.S. Adult population by age group, August 2020" = 2),  escape = F, background = "#fcf4d9", bold=T,border_left = T,   border_right = T ) #%>% #,border_left = T,   border_right = T
+# #column_spec(1:3, width = c("1in","1.5in", "1.5in"))
+```
+## Example 2:  Calculate labor force statistics $\diamond$
+
+In June 2009, at the trough of the Great Recession, the Bureau of Labor Statistics announced that of all adult Americans, 140,196,000 were employed, 14,729,000 were unemployed, and 80,729,000 were not in the labor force. Use this information to calculate:
+
+a. the adult population
+
+b. the labor force
+
+c. the labor-force participation rate
+
+d. the unemployment rate
+
+## Limitations of the u-rate: 
+  
+- ***Discouraged workers***: people not working but given up looking for a job given the state of the job market
+
+-  ***Underemployed***: are those who work part time because they cannot find full-time jobs.
+
+##  Labor Market Statistics for Different Groups varies from the averge
+\framesubtitle{Labor Force Statistics for Teens, August 2020 }
+\centering
+
+![](imgs02//fig5.PNG){height=70%}
+
+\renewcommand{\arraystretch}{1.5}
+```{r , message=FALSE, echo=FALSE, warning=F}
+# dt<- data.frame(urate=c("29.0","24.6%"),
+#                 prate=c("14.2%","36.6") )
+# row.names(dt)<- c("Black","White")
+# kable(dt, escape = T, col.names=c("u-rate","Labor force part. rate"), align = c("c", "c")) %>% #escape = FALSE,
+# row_spec(0:nrow(dt), bold = F, color = "black", background = "#fcf4d9")%>% #background = "#b2ddb2"
+# kable_styling(c( "bordered", latex_options="scale_down", font_size = 16)) %>%
+#  column_spec(1, border_left = TRUE) %>%  #border far left
+#  column_spec(ncol(dt)+1, border_right = TRUE) %>%  #border far right
+# add_header_above(c("Teens (16 - 19 years)" = 3),  escape = F, background = "#fcf4d9", bold=T,border_left = T,   border_right = T )%>%
+# column_spec(1:3, width = c("1in","1.5in", "1.5in"))
+```
+
+			
+## Labor Force Statistics for 20 and older by age, race and gender, August 2020
+\centering
+
+![](imgs02//fig6.PNG){height=70%}
+
+
+\renewcommand{\arraystretch}{1.5}
+
+```{r , message=FALSE, echo=FALSE, warning=F}
+# bg.col<- "#CCE5FF"
+# dt<- data.frame(urate=c("13.2%", "12.0", "6.9","7.3"),
+#                 prate=c("65.9%", "60.2", "70.3","56.9") )
+# row.names(dt)<- c("Black, male","Black, female","White male", "White, female")
+# kable(dt, escape = T, col.names=c("u-rate","Labor force part. rate"), align = c("c", "c")) %>% #escape = FALSE,
+# row_spec(0:nrow(dt), bold = F, color = "black", background = bg.col)%>% #background = "#b2ddb2"
+# kable_styling(c( "bordered", latex_options="scale_down", font_size = 28)) %>%
+#  column_spec(1, border_left = TRUE) %>%  #border far left
+#  column_spec(ncol(dt)+1, border_right = TRUE) %>%  #border far right
+# add_header_above(c("Adults (20 years & older)" = 3),  escape = T, background = bg.col, bold=T,border_left = T,   border_right = T ) #%>% #,border_left = T,   border_right = T
+# #column_spec(1:3, width = c("1in","1.5in", "1.5in"))
+```
+
+## Labor Force Statistics for Other Groups, August 2020
+
+\centering
+![](imgs02//fig7.PNG){height=70%}
+
+
+```{r , message=FALSE, echo=FALSE, warning=F}
+##\renewcommand{\arraystretch}{1.5}
+# bg.col<- "#CCFFFF"
+# dt<- data.frame(urate=c("10.7%","10.5"),
+#                 prate=c("63.8%",  "65.3") )
+# row.names(dt)<- c("Asians", "Hispanic")
+# kable(dt, escape = T, col.names=c("u-rate","Lab.force part. rate"), align = c("c", "c")) %>% #escape = FALSE,
+# row_spec(0:nrow(dt), bold = F, color = "black", background = bg.col)%>% #background = "#b2ddb2"
+# kable_styling(c( "bordered", latex_options="scale_down", font_size = 28)) %>%
+#  column_spec(1, border_left = TRUE) %>%  #border far left
+#  column_spec(ncol(dt)+1, border_right = TRUE) %>%  #border far right
+# add_header_above(c("All ages" = 3),  escape = F, background = bg.col, bold=T,border_left = T,   border_right = T ) #%>% #,border_left = T,   border_right = T
+# #column_spec(1:3, width = c("1in","1.5in", "1.5in"))
+```
+			
+##  Labor Force Statistics by Education Level for prime-age, August 2020
+\centering
+
+![](imgs02//fig8.PNG){height=70%}
+
+\renewcommand{\arraystretch}{1.5}
+
+```{r , message=FALSE, echo=FALSE, warning=F}
+# bg.col<- "#E0E0E0"
+# dt<- data.frame(urate=c("12.6%","9.8","8.0","5.3"),
+#                 prate=c("44.9%","54.9","64.0","72.8") )
+# row.names(dt)<- c("Less than high Sch.","High School Dipl.","Some College or Assoc. Degee", "Bachlor's Degree or more")
+# kable(dt, escape = T, col.names=c("u-rate","Labor force part. rate"), align = c("c", "c")) %>% #escape = FALSE,
+# row_spec(0:nrow(dt), bold = F, color = "black", background = bg.col)%>% #background = "#b2ddb2"
+# kable_styling(c( "bordered", latex_options="scale_down", font_size = 20)) %>%
+# # column_spec(1, border_left = TRUE) %>%  #border far left
+# # column_spec(ncol(dt)+1, border_right = TRUE) %>%  #border far right
+# add_header_above(c("Adults (25 years & older)" = 3),  escape = T, background = bg.col, bold=T )%>% #,border_left = T,   border_right = T
+# column_spec(1, width = c("2in"))
+```
+
+##  ***Active Learning: Limitations of the u-rate***
+\small
+In each of the following, what happens to the u-rate?   Does the u-rate give an accurate impression of what's happening in the labor market?
+
+  a. Sue lost her job and begins looking for a new one. 
+
+  b. Jon, a steelworker who has been out of work since his mill closed last year, becomes discouraged and gives up looking for work.  
+
+  c. Sam, the sole earner in his family of 5, just lost his \$80,000 job as a research scientist; and he takes a part-time job at McDonald's until he can find another job in his field.
+
+## The Natural Rate vs. Cyclical Unemployment
+
+1. ***Natural rate of unemployment (NARU, NAIRU):***
+
+2. ***Cyclical unemployment:***
+	
++ The ***Actual unemployment*** is the sum of these two
+			
+## U.S. Unemployment, 1947–2020 
+\centering
+![](imgs02//im_urate_natural.png){height=85%}
+
+			
+## Explaining the Natural Rate:  An Overview 
+
+1. ***Frictional unemployment***
+
+- job searh
+
+- sectoral shift
+
+- how Gov't policies worsen and lesson such unemployment 
+
+***Govt employment agencies***: provide information about job vacancies to speed up the matching of workers with jobs.
+
++ ***Public training programs***: aim to equip workers displaced from declining industries with the skills needed in growing industries. 
+
+::: notes
+
+- 
+
+:::
+			
+##  Unemployment Insurance
+
+***Unemployment insurance (UI)***: a govt program that partially protects workers' incomes when they become unemployed 
+
++ ***Cost of UI***: UI increases structural unemployment.
+
++ ***Benefits of UI***:
+
+2. ***Structural unemployment***
+
+
+```{=latex}
+\end{frame}
+```
+
+::: notes
+
+- The economy is always changing, so some frictional unemployment is inevitable; if such unempl. becomes persistent, it's structural.
+::: 
+
+## Gov't policies and Frictional Unemployment
+
++ 
+	
+	- Reduces uncertainty over incomes
+	
+	- Gives the unemployed more time to search, resulting in better job matches and thus higher productivity 
+	
+```{=latex}
+\end{frame}
+```
+
+::: notes
+
++ To see why, recall one of the Ten Principles of Economics: 
+  {\color{blue}People respond to incentives.}
+  UI benefits end when a worker takes a job, so workers have less incentive to search or take jobs while eligible to receive benefits.  
+:::
+
+			
+## 2. Structural unemployment:
+
+- usually long-term (persistent) and occurs when there are fewer jobs than workers seeking jobs due to wage rate being higher than equilibrium for some reason.  
+    
+
+```{=latex}
+\end{frame}
+```
+::: notes 
+- ***WARNING :***  If you are teaching with Mankiw for the first time, please note that his definition of structural unemployment may be different from the definition you've seen in other textbooks.  
+::: 
+
+::: notes 
+
+- Other books commonly define structural unemployment as arising from a mismatch between the skills or locations of workers and the skill requirements or locations of jobs.  Such textbooks assert that such unemployment results from sectoral shifts. ( if using Krugman put this definition: usually long-term and occurs when there are fewer jobs than workers seeking jobs due to mismatch between the skills or locations of workers or due to wage rate being higher than equilibrium for some reason). 
+::: 
+
+::: notes
+
+- Mankiw's position is as follows:  If all wages were flexible, then they would adjust after structural changes so that all workers with any given skill set in any given location would be employed.  The cause of ``structural unemployment'' therefore cannot be changes in the structure of demand and production; the cause must be wages that fail to adjust following these changes.  
+::: 
+
+## Explaining Structural Unemployment
+
+```{=latex}
+\begin{wrapfigure}{r}{0.5\textwidth}
+\includegraphics[width=0.5\textwidth]{imgs02//fig15.PNG}
+\end{wrapfigure}
+\bigskip
+\bigskip
+- Structural unemployment occurs when there are not enough jobs to go around. 
+\bigskip
+
+- Occurs when wage is kept above eq’m. 
+\bigskip
+
+- There are three reasons for this higher wages \dots
+```
+
+```{=latex}
+\end{frame}
+```
+
+::: notes
+
+- On this graph, $W_E$ is the equilibrium wage. 
+::: 
+
+## 1.  Minimum-Wage Laws
+
++ The min. wage may exceed the eq'm wage for the least skilled or experienced workers, causing structural unemployment.  
+
++ But this group is a small part of the labor force, so the min. wage can't explain most unemployment.  
+
+```{=latex}
+\end{frame}
+```
+::: notes
+- As in previous chapters, ``eq’m'' is short for ``equilibrium.''  
+
+- The textbook has an FYI box entitled ``Who earns the minimum wage?''  It summarizes a recent study by the Department of Labor detailing minimum wage earners.  
+
+::: 
+
+			
+## 2. Unions
+
++ ***Union***:  a worker association that bargains with employers over wages, benefits, and working conditions  
+
++ Unions exert their market power to negotiate higher wages for workers.  
+
++ The typical union worker earns 20\% higher wages and gets more benefits than a nonunion worker for the same type of work. 
+
++ When unions raise the wage above eq’m, quantity of labor demanded falls and unemployment results. 
+
++ Are unions good or bad?  Economists disagree. 
+
+```{=latex}
+\end{frame}
+```
+::: notes 
+- Information about the union wage premium differs.  The textbook says that union wages are 10-20\% higher.  Other sources, such as the AFL-CIO and the New York Times article featured in the “In the News Box,” say the figure is closer to 20\%, not including the increased benefits that union workers enjoy.  The BLS (\url{stats.bls.gov}) reports that, in 2004, median weekly earnings of full-time employed workers were \$781 for union members and \$612 for non-union members – a difference of 28\%.
+
+::: 
+
+::: notes 
+- So the range of estimates seems to be about 10-30\%.  I picked 20\%, a nice round number in the middle of this range, to put on this slide in the 3rd bullet point.  
+ In preparing these PowerPoints, I had to make judgments about which details from the textbook to omit (it would be neither possible nor desirable to include every detail from the book in these PowerPoints).  I have omitted the terms ``collective bargaining'' and ``strike'' along with their definitions.  
+::: 
+
+::: notes 
+- I was reluctant to do so, as they are boldfaced terms with definitions in the margins.  However, most students know these terms already (as well as the definition of ``union''), and they aren't necessary for the presentation of material in this section.  I respect that you might disagree with me, though, and encourage you to add these terms \& their definitions to your presentation if you feel it appropriate.  
+::: 
+
+::: notes
+
++  “Insiders” – workers who remain employed, they are better off
+
++  “Outsiders” – workers who lose their jobs, they are worse off
+
++  Some outsiders go to non-unionized labor markets, which increases labor supply and reduces wages in those markets. 
+
+::: 
+
+::: notes
+Are unions good or bad?  Economists disagree. 
+
++  Critics:  Unions are cartels.  They raise wages above eq'm, which causes unemployment and/or depresses wages in non-union labor markets.  
+
++  Advocates:  Unions counter the market power of large firms, make firms more responsive to workers' concerns. 
+
+::: 
+
+
+			
+## 3.  Efficiency Wages
+
++ The theory of efficiency wages:  Firms voluntarily pay above-equilibrium wages to boost worker productivity.
+
++ Higher wages may increase productivity because
+
+  - well paid workers are healthy (eat more and better)
+  
+  - reduces workers turnover (stay on the job longer, reducing hiring \& firing costs for the firm)
+  
+  - attracts quality workers
+  
+  - deters shirking on the job.
+  
+```{=latex}
+\end{frame}
+```
+
+::: notes
+-  In the case of unions and minimum wage laws, firms that pay above-equilibrium wages do so involuntarily.  The theory of efficiency wages, however, suggests that firms may willingly pay extra-high wages in order to increase the productivity of their workers.  
+
+::: 
+
+## Explaining the Natural Rate
+
+```{=latex}
+\framesubtitle{Distribution of the Unemployed by Duration, 2000}
+\begin{wrapfigure}{r}{0.5\textwidth}
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{imgs02//fig12.PNG}
+  \end{center}
+\end{wrapfigure}
+
++ In years when the unemployment rate is low, most unemployed workers are unemployed for only a short period. 
+\bigskip
+
++ The short duration of unemployment for most workers suggests that most unemployment in 2000 was frictional. 
+```
+
+```{=latex}
+\end{frame}
+```
+
+::: notes
+
++ Figure Caption: Figure 12-7: Distribution of the Unemployed by Duration of Unemployment, 2000
+In years when the unemployment rate is low, most unemployed workers are unemployed for only a short period. In 2000, a year of low unemployment, 45\% of the unemployed had been unemployed for less than 5 weeks and 77\% for less than 15 weeks. The short duration of unemployment for most workers suggests that most unemployment in 2000 was frictional. 
+Source: Bureau of Labor Statistics. 
+
+::: 
+
+
+## \textit{ACTIVE LEARNING: Applying the concepts }
+Which type of unemployment is increased or decreased by each of the following?
+
+A.  The govt eliminates the minimum wage.
+B.  The govt increases unemployment insurance benefits. 
+C.  A new law bans labor unions. 
+D.  More workers post their resumes at "indeed.com", and more employers use "indeed.com" to find suitable workers to hire.
+E.  Sectoral shifts become more frequent due to job creation and destruction. 
+
+
+::: notes 
+
+**ANSWERS:**
+
+- a. likely to lower structural u
+
+- b. increases structural u 
+
+- c. lower  structural u 
+
+- d. lowers frictional u 
+
+- e. lowers structural u
+::: 
+
+			
+## SUMMARY 
+
++ The natural rate of unemployment consists of 
+
++ frictional unemployment 
+  - It takes time to search for the right jobs 
+  - Occurs even if there are enough jobs to go around
+  
++ structural unemployment 
+  - When wage is above eq'm, not enough jobs  
+  - Due to min. wages, labor unions, efficiency wages
+  
++ cyclical unemployment, the short-term fluctuations in unemployment associated with business cycles (more detail in later chapters).
+
+
+::: notes
+
+- The last sentence is just a reminder to students that there is more to unemployment than what we have covered in this chapter.  Our goal here has been to learn about the natural rate of unemployment, the ``normal'' or average unemployment rate over the long run.  We'll study short-run fluctuations later.  
+
+::: 
+
+```{r, echo=F}
+knitr::knit_exit()  #early exit, like \end{document} in latex
+```

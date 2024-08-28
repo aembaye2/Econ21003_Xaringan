@@ -1,0 +1,428 @@
+---
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+  includes:
+    #in_header: ../../../../../_Fns/packages4looks4rmd_beamer.tex
+title:  "Ten Core Principles of Economics"
+author: "Abel Embaye"
+institute: |
+        | Department of Economics
+        |
+        | UofA
+        |
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+
+
+
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+
+```{r, echo=FALSE}
+#knitr::knit_exit()
+```
+
+
+## Ten Principles of Economics
+
+In this chapter, you will be able to answer the following questions:
+
++  What kinds of questions does economics address?
+
++  What are the principles of how people make decisions? 
+
++  What are the principles of how people interact?
+
++  What are the principles of how the economy as a whole works?
+
++  What is the difference between microeconomics & Macroeconomics?
+
+---
+
+## What Economics Is All About 
+
++ ***Scarcity:***  the limited nature of society's resources (labor, land, physical capital)
+
++ ***Economics:***  the study of how society manages its scarce resources.
+
+   
+
+			
+---
+background-image: url("imgs/Ch01_fig1a.jpg")
+background-position: 95% 5%
+class: white
+
+## The principles of ***HOW PEOPLE  MAKE DECISIONS***
+
+<!-- ![](imgs/Ch01_fig1a.jpg){fig.width=100%} -->
+
+### Principle \#1. Because Resources are scarce, People Face Trade-offs 
+
+All decisions involve tradeoffs. Examples:
+
++  Students face trade-offs: 
+
++  Farmers face trade-offs: producing more of apple vs. more of oranges
+
++  Governments face trade-offs: more butter versus guns
+
+			
+---
+
+## Principle 1: Because Resources are scarce, People Face Trade-offs
+        
++  Society faces an important trade-off between ***efficiency vs. equity (equality):***
+
+    - ***Efficiency:***  when society gets the most from its scarce resources
+
+    - ***Equity:***  when prosperity is distributed uniformly or *fairly* among society's members
+
++  Tradeoff:  To achieve greater equality, society could redistribute income from wealthy to poor. But this reduces incentive to work and produce, shrinks the size of the economic *pie.* 
+
+			
+---
+
+## Principle 2:  The Cost of Something Is What You Give Up to Get It 
+
++  Making decisions requires comparing the costs and benefits of alternative choices. 
+
++  The ***opportunity cost*** of any item is whatever must be given up to obtain it.  
+
+  - It is the relevant cost for decision making.
+
+			
+---
+
+## Principle 2:  The Cost of Something Is What You Give Up to Get It 
+
+What is the opportunity cost of
+
++  going to college?
+
++  seeing a movie?
+
+			
+---
+
+## Principle 3: Rational People Think at the Margin
+
+ 
+
++  Economists assume that people are rational since they systematically and purposefully do the best they can to achieve their objectives.
+
++  Or make decisions by evaluating marginal cost and marginal benefits; 
+  - ***Marginal Changes*** – incremental adjustments to an existing plan.
+
++  Ignore ***Sunk Cost*** – cost already incurred and cannot be recovered.
+
+			
+---
+
+## Principle 3:  Rational People Think at the Margin  
+Examples:  
+
++  A student considering whether to go to college compares
+
++  When a manager considers whether to increase output, she compares
+
+---
+
+## Principle 4:  People Respond to Incentives  
+
+
++  ***Incentive:***  something that induces a person to act, i.e. the prospect of a reward or punishment. 
+
+<br> <br> <br>
++  Rational people respond to incentives.
+
+			
+---
+
+## ACTIVE LEARNING 1: APPLYING THE PRINCIPLES  
+
+***Example 1:*** You are selling your 1996 Mustang.  You have already spent \$1000 on repairs.  
+At the last minute, the transmission dies.  You can pay \$ 600 to have it repaired, or sell the car *as is.* 
+In each of the following scenarios, should you have the transmission repaired?  Explain.
+
+a. Blue book value is \$ 6500 if transmission works, \$ 5700 if it doesn't
+
+b.  Blue book value is \$ 6000 if transmission works, \$ 5500 if it doesn't
+
+ 
+
+ 
+
+---
+
+## ACTIVE LEARNING 2: APPLYING THE PRINCIPLES 
+Jim and Mike are roommates with the same taste for Jazz. Jim wins a ticket from a Radio station to see the jazz band perform at an outdoor concert. Mike has paid \$20 for a ticket to the same concert. Both tickets are non-refundable. Due to a tremendous thunderstorm, they are reconsidering their attending the concert. Who do you think will be more likely to attend the concert, assuming that both are rational? Explain why.
+
+			
+---
+
+## ACTIVE LEARNING 3: APPLYING THE PRINCIPLES  
+Suppose you won a  ticket from a Radio station to see a jazz band perform at an outdoor concert. But while preparing to go to the concert today, it rains and you decide not to go. Suppose you had paid \$500  for the ticket instead of getting it for free, what would be the rational decision for you to do now: go or not go to the concert?
+
+			
+---
+background-image: url("imgs/Ch01_fig2.jpg")
+background-position: 95% 5%
+class: white
+background-size: 25% 25%
+
+## The principles of HOW PEOPLE INTERACT
+
+<!-- ![](imgs/Ch01_fig2.jpg){fig.width=100%} -->
+
+## Principle 5:  Trade Can Make Everyone Better Off 
+
++  Rather than being self-sufficient, people can specialize in producing one good or service and exchange it for other goods.  
+
++  Countries also benefit from trade & specialization:
+    - Get a better price abroad for goods they produce
+    - Buy other goods more cheaply from abroad than could be produced at home
+
+---
+
+## Principle 6:  Markets Are Usually A Good Way to Organize Economic Activity
+
++  *** Market:***  a group of buyers and sellers (not necessarily a place)
+
++  ***Organize economic activity*** means determining:
+    - what (and how much) g & s to produce
+    - how to produce them  
+    - For Whom to produce: who gets them
+
++  These are the 3 economic problems every society must solve.
+
+			
+---
+
+## Principle 6:  Markets Are Usually A Good Way to Organize Economic Activity 
+
++ A ***market economy***, unlike ***command economy***, allocates resources through the decentralized decisions of many households and firms as they interact in markets.
+
++ Famous insight by Adam Smith in The Wealth of Nations (1776): "Each of these households and firms acts as if *led by an invisible hand* to promote general economic well- being."
+
+			
+---
+
+## Principle 6:  Markets Are Usually A Good Way to Organize Economic Activity 
+The invisible hand works through the price system:
+ 
++  The interaction of buyers and sellers determines prices.  
+
++  Each price reflects the good's value to buyers and the cost of producing the good. 
++  Prices guide self-interested households and firms to make decisions that, in many cases, maximize society's economic well-being (i.e., efficient). 
+
+---
+
+## Principle 6:  Markets Are Usually A Good Way to Organize Economic Activity 
+
++  For the market mechanism to work, it needs the govt to ***enforce property rights*** (with police, courts, even the military)
+
++  People are less inclined to work, produce, invest, or purchase if there is large risk of their property being stolen
+
++  Even with proper enforcement of property rights, a market mechanism can sometimes lead to inefficient allocation of resources \ldots
+
+ 
+
+---
+
+## Principle 7 :  Governments Can Sometimes Improve Market Outcomes 
+
++ ***Market failure:***  when the market fails to allocate society's resources efficiently.
+
++ 3 Causes of market failure:
+
+  1. <u>Externalities</u>, when the production or consumption of a good affects bystanders (e.g. pollution)
+  
+  2. <u>Market power</u>, a single buyer or seller has substantial influence on market price (e.g. monopoly)
+  
+	3. <u>Public goods:</u> defense services, parks, etc.
+
++  In such cases, well designed public policies may promote efficiency
+
+---
+
+## Principle 7:  Governments Can Sometimes Improve Market Outcomes 
+
++  Govt may alter market outcome to ***promote equity***
+
++ If the market's distribution of economic well-being is not desirable, tax or welfare policies can change how the economic *pie* is divided. 
+
+---
+
+## Discussion Questions   
+
+In each of the following situations, what is the government's role?  Does the government's intervention improve the outcome?
+
+a. Public schools for K-12
+
+b. Public highways
+
+c. Patent laws, which allow drug companies to charge high prices for life-saving drugs
+
+---
+
+## Two Broad Branches of Economics 
+
++ ***Microeconomics:*** branch of economics concerned with how people make decisions and how these decisions interact.
+    - e.g., determination of price, employment or output in a particular market or industry.
+
++  ***Macroeconomics:*** branch of economics concerned with the overall economy. 
+    - e.g., determination of national income, economic growth, recessions, inflation.
+
+---
+background-image: url("imgs/Ch01_fig3.jpg")
+background-position: 95% 95%
+class: white
+background-size: 25% 25%
+
+## The principles of HOW THE ECONOMY AS A WHOLE WORKS 
+
+<!-- ![](imgs/Ch01_fig3.jpg) -->
+
+### Principle 8: A Country's Standard of Living Depends on Its Ability to Produce Goods & Services 
+
++  The most important determinant of living standards:  ***productivity***, the amount of goods and services produced per unit of labor.   
+
++  Productivity depends on the equipment, skills, and technology available to workers.
+
++  Other factors (e.g., labor unions, competition from abroad) have far less impact on living standards.
+
+			
+---
+
+## Principle 9: Prices Rise When the Government Prints Too Much Money 
+
++  Inflation:  increase in the general level of prices.  
+
++  In the long run, inflation is almost always caused by excessive growth in the quantity of money, which causes the value of money to fall.  
+
++  The faster the govt creates money, the greater the inflation rate.
+
+---
+
+## ***Principle 10:*** Society Faces a Short-run Tradeoff Between Inflation and Unemployment
+
++  In the short-run (1–2 years), many economic policies push inflation and unemployment in opposite directions.  
+
++  Other factors can make this tradeoff more or less favorable, but the tradeoff is always present.  
+
+---
+
+## SUMMARY  
+1. Because Resources are scarce, People Face Trade-offs
+2. The Cost of Something Is What You Give Up to Get It
+3. Rational People Think at the Margin
+4. People Respond to Incentives 
+5. Trade Can Make Everyone Better Off
+6. Markets Are Usually A Good Way to Organize Economic Activity 
+7. Governments Can Sometimes Improve Market Outcomes
+8. A Country's Standard of Living Depends on Its Ability to Produce Goods & Services
+9. Prices Rise When the Government Prints Too Much Money
+10. Society Faces a Short-run Tradeo Between In ation and Unemployment
+
+```{r, echo=F}
+knitr::knit_exit()  #early exit, like \end{document} in latex
+```
+
+# FYI
+---
+
+## FYI:  How to Read Your Textbook @!
+
+\begin{enumerate}
+\item <u>Read before class.</u>
+You'll get more out of class.
+\item  <u>Summarize, don't highlight.</u> 
+Highlighting is a passive activity that won't improve your comprehension or retention.  Instead, summarize each section in your own words.  Then, compare your summary to the one at the end of the chapter. 
+\item <u>Test yourself.</u>
+Try the ``check your understanding'' that follows each section before moving on to the next section.  
+Write your answers down, compare them to the answers in the back of the book.  If your answers are incorrect, review the section before moving on.  
+
+\end{enumerate}
+\end{frame}
+
+\note{\scriptsize{
+-- Most new college students have not been taught good study skills, yet we professors often assume they have such skills.  This is the first of four slides that summarize an FYI box which describes proven strategies for learning and retention. 
+
+-- If you're pressed for time, you can of course skip these slides, but please urge your students to read this FYI box. 
+
+-- But if you can spare 30 minutes of class time, there's a very effective activity you can do in class which lets students see for themselves the power of active reading and teaching a partner. I describe this activity in the notes section of the fourth ``FYI:  How to Read Your Textbook'' slide.  This activity could replace showing these four slides in class, though your students should still read the corresponding FYI box in the book. 
+
+}
+}
+
+\begin{frame}			
+\frametitle{FYI:  How to Read Your Textbook @! }
+\begin{enumerate}
+\setcounter{enumi}{3}
+\item <u>Practice, practice, practice.</u> 
+Work through the end-of-chapter problems.  They are often good practice for the exams.  And the more you use your new knowledge, the more solid it will become.
+\item  <u>Go online.</u>
+The book comes with excellent web resources, including practice quizzes and other resources to help you learn the textbook material more easily and effectively. \url{http://bcs.worthpublishers.com/krugmanwellsgraddy_essentials2/\#t_622261____}
+\item <u>Study in groups.</u>
+Get together with a few classmates to review each chapter, quiz each other, and help each other understand the material.  
+
+\end{enumerate}
+\end{frame}
+
+\note{\scriptsize{
+ \begin{itemize}
+\item If you do not like ``They are often good practice for the exams,'' please feel free to delete it.  I've found, though, that students are more motivated to work practice problems when they think that doing so will help them earn a higher score on the exam. 
+\item If your classroom computer has a live internet connection, you should be able to click on the link and visit the textbook's website.  It's worth taking 2-3 minutes of class time to show students the resources there.  
+
+\end{itemize}
+}
+}
+
+\begin{frame}			
+\frametitle{FYI:  How to Read Your Textbook @! }
+\begin{enumerate}
+\setcounter{enumi}{6}
+\item <u>Teach someone.</u>
+ The best way to learn something is to teach it to someone else, such as a study partner or friend. 
+\item 	<u>Don't skip the real world examples.</u>
+Read the real world examples and applications boxes in each chapter.  They will help you see how the new terms, concepts, models, and graphs apply to the real world.  As you read the newspaper or watch the evening news, see if you can find the connections with what you're learning in the textbook. 
+
+\end{enumerate}
+\end{frame}
+
+\note{\scriptsize{
+Here’s the activity I mentioned a few slides back.  I have used it many times with terrific results.  
+
+Find two newspaper articles on topical economic issues.  The articles must be (1) short enough that a beginning college student can read either of them in 10 minutes or less, (2) appropriate for the lay reader, and (3) very interesting.  Make enough copies for all students in your class.  Use different colored paper for each article, e.g. yellow for Article 1 and blue for Article 2.  In class, instruct students to pair up.  In each student pair, one student is assigned Article 1, the other assigned Article 2.  Tell students they will have 15 minutes to read their assigned article.  Then, each student will have 5 minutes to teach the contents of his or her article to his or her partner.  Tell students it is not acceptable to merely give a paragraph-by-paragraph summary when teaching their articles to their partner. 
+
+Use your timer or a watch to announce when the 15 minutes are up and it's time to start teaching.  Five minutes later, announce when it's time for the other student to teach his/her article.  Five minutes later, stop the activity and re-group as a class.  
+
+}
+}
+
+\begin{frame}			
+\frametitle{Cont'd @! }
+\begin{itemize}
+\item
+\end{itemize}
+\end{frame}
+
+\note{\scriptsize{
+Ask your students the following four questions.  
+
+1) ``How did you read your article, knowing that you were going to have to teach it to someone in a few minutes?  Did you read it the same way as when you're reading the paper on your own?  Explain.''  Summarize their responses on the board; you should come up with a list that includes the techniques they used to read the article.  It will include things like ``I took notes,'' ``I tried to identify the main point and the supporting information,'' ''I kept going back and re-reading sections of the article,'' or ''I kept jumping around the article, looking for connections.''  After taking students responses, you can add a couple of your own if you like.  
+
+2) ``Having read the article using these techniques, do you think you learned more from it and will retain more than if you read the article they way you would when you're reading the paper on your own?  Explain.''  There should be a consensus that, yes, using these techniques leads to more learning and better retention.   
+
+3) ``Are there any other contexts in which you might benefit from using these techniques while reading?''  The students should realize the obvious answer:  reading their textbooks.  
+}
+}
