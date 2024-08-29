@@ -36,6 +36,8 @@ library(grid)
 library("ggdensity")
 library(ggpubr)
 library(scales)  # For dollar formatting
+library(colorspace) # for darken()
+library(ggrepel)    # for geom_text_repel()
 ```
 
 > "Teach a parrot the terms 'supply and demand' and you've got an economist."--- Thomas Carlyle
@@ -92,16 +94,25 @@ draw_and_table(x_val , y_val , x_title , y_title  )
 ```
 
 ---
-background-image: url("imgs/Ch04_fig2.png")
-background-position: 50% 90%
-class: white
-background-size:  700px 350px
-
 ## Market Demand versus Individual Demand 
 
 + The quantity demanded in the market is the sum of the quantities demanded by all buyers at each price (horizontal summation).
 
 + Suppose Helen and Ken are the only two buyers in the Mocha market. (Qd = quantity demanded)
+
+```{r, echo=F}
+df<- data.frame(p=paste0("$",1:6,".00"),
+                q1=seq(14,4,-2),q2=seq(7,2,-1), qm=seq(21,6,-3))
+dt= df
+x<- kable(dt, col.names=c("Price","Hellen's Qd","Ken's Qd", "Market Qd" ))%>% #escape = FALSE
+row_spec(0:nrow(dt), bold = F, color = "black", background = "#b2ddb2")%>%
+kable_styling(font_size = 20) #%>%
+#column_spec(1:4, width = c("1in","1.5in", "1.5in"))
+
+x
+
+```
+		
 
 ---
 ## The Market Demand Curve for Mochas 
@@ -163,14 +174,12 @@ Draw your demand schedule for shirt.
 
 			
 ---
-background-image: url("imgs/Ch04_fig4.png")
-background-position: 50% 90%
-class: white
-background-size: 75% 75%
 
-## Example: Market Demand for Gasoline
+## Example: Market Demand for Gasoline 
+```{r, echo=F, warning=F, message=F, fig.align='center'}	
+grepl_plot()
+```
 
-			
 ---
 
 ## Demand Curve Shifters
@@ -255,13 +264,31 @@ draw_and_table(x_val , y_val , x_title , y_title  )
 
 +  The $Q_s$  in the market is the sum of $Q_s$ by all sellers at each price. (Qs = quantity supplied)
 
-+  Suppose Starbucks and Jitters are the only two sellers in this market.  
++  Suppose Starbucks and Jitters are the only two sellers in this market.
 
- ![](imgs/Ch04_fig9.png) 
+
+```{r, echo=F}
+p=paste0("$",0:6,".00")
+q1=seq(0,18,3)
+q2=seq(0,12,2)
+plus=rep("+",length(p))
+equalsn=rep("=",length(p))
+qm=q1+q2
+df<- data.frame(p, q1,plus,q2,equalsn, qm)
+dt= df
+x<- kable(dt, col.names=c("Price","Starbucks Qs","","Arsega's Qs","", "Market Qs" ))%>% #escape = FALSE
+row_spec(0:nrow(dt), bold = F, color = "black", background = "#b2ddb2")%>%
+kable_styling(font_size = 20) #%>%
+#column_spec(1:4, width = c("1in","1.5in", "1.5in"))
+
+x
+
+```
+		
 
 ---
 ## The Market Supply Curve
-```{r, echo=F, fig.width=15}
+```{r, echo=F, fig.width=10}
 y_val <- 0:6
 x_val <- seq(0, 30, by=5)
 x_title = "Cups of Mocha per Month"
@@ -335,24 +362,48 @@ b. A technological advance allows the software to be produced at lower cost.
 
 ---
 
-## Supply and Demand Together 
+## Supply and Demand Together: Equilibrium Point, Price, Quantity
 
-.pull-left[
 
-+ **Equilibrium Point**:
+```{r, echo=F, warning=F, message=F}
+# y=0:6; x=seq(24,6, -3); z= seq(0,30, 5)
+# x_title="Q"; y_title="P"
+# myfun <- function(xvar) {
+#   #1 / (1 + exp(-xvar + 10))
+#   8 - (xvar/3)
+# }
+# myfun2 <- function(xvar) {
+#   xvar/5
+# }
+# # This sets the x range from 0 to 20
+# gp<- ggplot(data.frame(x = c(0, 30)), aes(x = x)) +
+#   stat_function(fun = myfun, geom = "line")+
+#   stat_function(fun = myfun2, geom = "line")+
+#   #scale_y_continuous(limits = c(0, NA)) + # Set the lower limit of y-axis to 0
+#   theme(
+#       axis.title.x = element_text(size = 20),  # Enlarge x-axis title
+#       axis.title.y = element_text(size = 20),  # Enlarge y-axis title
+#       axis.text.x = element_text(size = 25),   # Enlarge x-axis labels
+#       axis.text.y = element_text(size = 25)    # Enlarge y-axis labels
+#     ) +
+#     labs(x = x_title, y = y_title) +  # Set custom axis titles
+#     scale_x_continuous(breaks = x) +  # Set x-axis breaks to match data
+#     scale_y_continuous(labels = label_dollar(accuracy = 0.01), limits = c(0, NA))  # Set y-axis labels to dollar format
+#   
+#   # Create the summary table
+#   summary_table <- data.frame(
+#     `P` = label_dollar(accuracy = 0.01)(y), # Dollar format for y
+#     `Qd` = x,
+#     `Qs` = z  # Dollar format for z
+#   )
+#   
+#   # Create the table using ggtexttable with larger text
+#   table_plot <- ggtexttable(summary_table, rows = NULL, theme = ttheme("mOrange", base_size = 40))
+#   
+#   # Arrange the line plot and table side by side
+#   grid.arrange(gp, table_plot, ncol = 2, widths = c(2, 1))
+```
 
-<br> <br> <br>
-
-+ **Equilibrium Price**:
-
-<br> <br> <br>
-
-+ **Equilibrium Quantity**:
-]
-
-.pull-right[
-![](imgs/Ch04_fig13.png)
-  ]
 			
 ---
 
@@ -400,6 +451,7 @@ background-image: url("imgs/Ch04_fig_BlankSS_DD.png")
 background-position: 50% 95%
 class: white
 background-size: 75% 75%
+
 ## Effects of Supply and Demand Shifts  
 
 <!-- ![](imgs/Ch04_fig_BlankSS_DD.png) -->

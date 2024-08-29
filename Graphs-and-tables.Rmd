@@ -19,6 +19,7 @@ options(htmltools.dir.version = FALSE)
 
 ```{r , include=FALSE}
 #knitr::knit_exit()
+library(psych)
 library(knitr)
 library(kableExtra)
 library(dplyr)
@@ -33,9 +34,193 @@ library(gridExtra)
 library(grid)
 library("ggdensity")
 library(ggpubr)
+library(tidyverse)
+library(colorspace) # for darken()
+library(ggrepel)    # for geom_text_repel()
 ```
 
 
+```{r , echo=FALSE, message=F, warning=F, fig.align='center'}
+xvar_name= "Gasoline price (in dollars per gallon)"
+yvar_name="Gasoline consumption\n (gallon per day per person)"
+p<- c(3, 4, 5.5,6, 7.5,7.6, 7.8, 8)
+country<- c("U.S.", "Canada", "Japan", "Spain",
+      "Italy", "France", "U.K.", "Germany")
+region<- c("Americas", "Americas", "Asia", "Europe",
+      "Europe", "Europe", "Europe", "Europe")
+q<- c(1.3, 1.0, .4, .2,.35, .2,.38, .37 )
+
+df<- data.frame(q,p, country, region)
+nregions= length(unique(df$region))
+#"country" "region"  "cpi"     "hdi"
+
+# Okabe Ito colors
+
+# region_cols <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2" , "#999999")
+# Define a color palette
+color_palette <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#999999", "#D55E00", "#CC79A7", "#F0E442", "#0072B2")
+
+region_cols <-  color_palette[1:(nregions+1)]
+country_highlight <- c("U.S.", "Canada", "Japan", "Spain",
+      "Italy", "France", "U.K.", "Germany")
+
+df <- df %>%
+  mutate(
+    label = ifelse(country %in% country_highlight, country, "")
+  )
+
+df <- df %>%
+  mutate(region = case_when(
+    region == "Middle East and North Africa" ~ "Middle East\nand North Africa",
+    region == "Europe and Central Asia" ~ "Europe and\nCentral Asia",
+    region == "Sub Saharan Africa" ~ "Sub-Saharan\nAfrica",
+    TRUE ~ region)
+    )
+
+ggplot(df, aes(q, p)) +
+  geom_smooth(
+    aes(color = "y ~ log(x)", fill = "y ~ log(x)"),
+    method = 'lm', formula = y~log(x), se = FALSE, fullrange = TRUE
+  ) +
+  geom_point(
+    aes(color = region, fill = region),
+    size = 2.5, alpha = 0.5, shape = 21
+  ) +
+  geom_text_repel(
+    aes(label = label), # this label are the selected countries
+    color = "black",
+    size = 9/.pt, # font size 9 pt
+    point.padding = 0.1, 
+    box.padding = .6,
+    min.segment.length = 0,
+    max.overlaps = 1000,
+    seed = 7654
+  ) +
+  scale_color_manual(
+    name = NULL,
+    values = darken(region_cols, 0.3)
+  ) +
+  scale_fill_manual(
+    name = NULL,
+    values = region_cols
+  ) +
+  scale_x_continuous(
+    name = xvar_name ,
+    limits = c(min(q)-.5, max(q)+.5),
+    breaks = c(0, .25, .50, 1.0, 1.5),
+    expand = c(0, 0)
+  ) +
+  scale_y_continuous(
+    name = yvar_name,
+    limits = c(min(p)-1, max(p)),
+    breaks = 2:8,
+    expand = c(0, 0)
+  ) +
+  guides(
+    color = guide_legend(
+      nrow = 1,
+      override.aes = list(
+        linetype = c(rep(0, nregions), 1),
+        shape = c(rep(21, nregions), NA)
+      )
+    )
+  ) +
+  theme_minimal_hgrid(12, rel_small = 1) +
+  theme(
+    legend.position = "top",
+    legend.justification = "right",
+    legend.text = element_text(size = 9),
+    legend.box.spacing = unit(0, "pt")
+  )
+
+```
+
+---
+
+```{r , echo=FALSE, message=F, warning=F, fig.align='center'}
+load(file="C:/Users/aembaye/OneDrive - University of Arkansas/C2-embaye/MyProjects_new/corruption.rda")
+#View(corruption)
+df <- corruption %>% 
+  filter(year == 2015) %>% 
+  na.omit()
+
+# Okabe Ito colors
+region_cols <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2" , "#999999")
+
+country_highlight <- c("Germany", "Norway", "United States", "Greece", "Singapore", "Rwanda", "Russia", "Venezuela", "Sudan", "Iraq", "Ghana", "Niger", "Chad", "Kuwait", "Qatar", "Myanmar", "Nepal", "Chile", "Argentina", "Japan", "China")
+
+df <- df %>%
+  mutate(
+    label = ifelse(country %in% country_highlight, country, "")
+  )
+
+df <- df %>%
+  mutate(region = case_when(
+    region == "Middle East and North Africa" ~ "Middle East\nand North Africa",
+    region == "Europe and Central Asia" ~ "Europe and\nCentral Asia",
+    region == "Sub Saharan Africa" ~ "Sub-Saharan\nAfrica",
+    TRUE ~ region)
+    )
+
+ggplot(df, aes(cpi, hdi)) +
+  geom_smooth(
+    aes(color = "y ~ log(x)", fill = "y ~ log(x)"),
+    method = 'lm', formula = y~log(x), se = FALSE, fullrange = TRUE
+  ) +
+  geom_point(
+    aes(color = region, fill = region),
+    size = 2.5, alpha = 0.5, shape = 21
+  ) +
+  geom_text_repel(
+    aes(label = label),
+    color = "black",
+    size = 9/.pt, # font size 9 pt
+    point.padding = 0.1, 
+    box.padding = .6,
+    min.segment.length = 0,
+    max.overlaps = 1000,
+    seed = 7654
+  ) +
+  scale_color_manual(
+    name = NULL,
+    values = darken(region_cols, 0.3)
+  ) +
+  scale_fill_manual(
+    name = NULL,
+    values = region_cols
+  ) +
+  scale_x_continuous(
+    name = "Corruption Perceptions Index, 2015 (100 = least corrupt)",
+    limits = c(10, 95),
+    breaks = c(20, 40, 60, 80, 100),
+    expand = c(0, 0)
+  ) +
+  scale_y_continuous(
+    name = "Human Development Index, 2015\n(1.0 = most developed)",
+    limits = c(0.3, 1.05),
+    breaks = c(0.2, 0.4, 0.6, 0.8, 1.0),
+    expand = c(0, 0)
+  ) +
+  guides(
+    color = guide_legend(
+      nrow = 1,
+      override.aes = list(
+        linetype = c(rep(0, 5), 1),
+        shape = c(rep(21, 5), NA)
+      )
+    )
+  ) +
+  theme_minimal_hgrid(12, rel_small = 1) +
+  theme(
+    legend.position = "top",
+    legend.justification = "right",
+    legend.text = element_text(size = 9),
+    legend.box.spacing = unit(0, "pt")
+  )
+
+```
+
+---
 ```{r , echo=FALSE, message=F, warning=F, fig.width=15}
 # Create the data frame
 p = 1:10

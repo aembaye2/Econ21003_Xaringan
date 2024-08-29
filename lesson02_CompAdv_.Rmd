@@ -6,8 +6,7 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
-    
-    includes:
+    #includes:
       #in_header: ../../../../../_Fns/packages4looks4rmd_beamer.tex
 title: "Thinking Like an Economist"
 subtitle: "Absolute and Comparative Advantage"

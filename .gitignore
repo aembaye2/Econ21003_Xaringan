@@ -1,3 +1,20 @@
-# ignore the following files (commented ones will not be ignored)!
-Chapter01.Rmd
-Chapter02.Rmd
+## ignore the following files (commented ones will not be ignored)!
+Graphs-and-tables_files                        
+# imgs
+# lesson03_SS-DD__files
+# libs
+.gitignore
+ func_file.R
+Graphs-and-tables.html
+Graphs-and-tables.Rmd
+# index.html
+# lesson01_Intr_.html
+lesson01_Intr_.Rmd
+# lesson02_CompAdv_.html
+lesson02_CompAdv_.Rmd
+# lesson03_SS-DD_.html
+lesson03_SS-DD_.Rmd
+logo.png
+students.csv
+Z_quickStuff.py
+Z_SomeNotes4Xanagrin.txt
