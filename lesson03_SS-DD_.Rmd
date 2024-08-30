@@ -364,46 +364,43 @@ b. A technological advance allows the software to be produced at lower cost.
 
 ## Supply and Demand Together: Equilibrium Point, Price, Quantity
 
-
-```{r, echo=F, warning=F, message=F}
-# y=0:6; x=seq(24,6, -3); z= seq(0,30, 5)
-# x_title="Q"; y_title="P"
-# myfun <- function(xvar) {
-#   #1 / (1 + exp(-xvar + 10))
-#   8 - (xvar/3)
-# }
-# myfun2 <- function(xvar) {
-#   xvar/5
-# }
-# # This sets the x range from 0 to 20
-# gp<- ggplot(data.frame(x = c(0, 30)), aes(x = x)) +
-#   stat_function(fun = myfun, geom = "line")+
-#   stat_function(fun = myfun2, geom = "line")+
-#   #scale_y_continuous(limits = c(0, NA)) + # Set the lower limit of y-axis to 0
-#   theme(
-#       axis.title.x = element_text(size = 20),  # Enlarge x-axis title
-#       axis.title.y = element_text(size = 20),  # Enlarge y-axis title
-#       axis.text.x = element_text(size = 25),   # Enlarge x-axis labels
-#       axis.text.y = element_text(size = 25)    # Enlarge y-axis labels
-#     ) +
-#     labs(x = x_title, y = y_title) +  # Set custom axis titles
-#     scale_x_continuous(breaks = x) +  # Set x-axis breaks to match data
-#     scale_y_continuous(labels = label_dollar(accuracy = 0.01), limits = c(0, NA))  # Set y-axis labels to dollar format
-#   
-#   # Create the summary table
-#   summary_table <- data.frame(
-#     `P` = label_dollar(accuracy = 0.01)(y), # Dollar format for y
-#     `Qd` = x,
-#     `Qs` = z  # Dollar format for z
-#   )
-#   
-#   # Create the table using ggtexttable with larger text
-#   table_plot <- ggtexttable(summary_table, rows = NULL, theme = ttheme("mOrange", base_size = 40))
-#   
-#   # Arrange the line plot and table side by side
-#   grid.arrange(gp, table_plot, ncol = 2, widths = c(2, 1))
+```{r , include=FALSE, message=F, warning=F, fig.align='center', fig.width=6}
+# Sys.setenv(TZ = "UTC")
+# options(warn=-1)
+# options("tikzLatex"='C:/Program Files/MiKTeX 2.9/miktex/bin/x64/pdflatex.exe')
+# options("tikzLatex"='C:/Users/aembaye/AppData/Local/Programs/MiKTeX/miktex/bin/x64/pdflatex.exe')
+# pkgs<- c("quantmod", "ggplot2","ggthemes", "Quandl", "xts", "lubridate", "tikzDevice", "graphics", "gridExtra",
+#          "plotrix", "png", "pdftools", "xtable", "readxl", "grid",  "dplyr", "ggrepel", "reshape2"); pkgs
+# for (i in 1:length(pkgs)) {library(pkgs[i], character.only=T)} #print(i)}
+# 
+# fun1<- function(x) (-1/3)*(x-24)
+# fun2<- function(x) (1/5)*x
+# base <-
+#   ggplot() +
+#   xlim(0, 30) +
+#   ylim( 0, 6)
+# 
+# # base + 
+# #   geom_function(fun = dnorm) +
+# #   geom_function(fun = fun2, linewidth=1)
+# gg<- base + 
+# geom_function(fun = fun1, colour = "blue") +
+#     geom_function(fun = fun2, colour = "blue")
+# 
+# out.file="file_x2"
+# tikz(paste0(out.file,'.tex'), standAlone = TRUE, height=2.5, width=4) #height=2.5, width=4
+# print(gg)
+# invisible(dev.off())
+# tools::texi2dvi(paste0(out.file,'.tex'), pdf=T, clean=T)  #compile the .tex file to .pdf
+# file=pdf_render_page(paste0(out.file,'.pdf'), page = 1, dpi = 300)  # prepare .pdf to .png
+# png::writePNG(file, paste0(out.file,'.png')) # pdf to png
+# ## file.remove(list.files(pattern="*.tex|*.log|*.aux"))
+# file.remove(list.files(pattern="*.log|*.aux"))
+# #system2('open', paste0(out.file,'.pdf'), wait = FALSE)
 ```
 
+
+![](file_x2.png)
 			
 ---
 
